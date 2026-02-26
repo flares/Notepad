@@ -1,0 +1,70 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-surface text-text-primary font-sans;
+    margin: 0;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  * {
+    -webkit-tap-highlight-color: transparent;
+    box-sizing: border-box;
+  }
+}
+
+@layer components {
+  .bottom-sheet-backdrop {
+    @apply fixed inset-0 bg-black/50 backdrop-blur-sm z-40;
+  }
+
+  .bottom-sheet {
+    @apply fixed bottom-0 left-0 right-0 bg-surface-elevated rounded-t-3xl z-50
+           max-h-[90vh] overflow-y-auto;
+    padding-bottom: max(env(safe-area-inset-bottom), 1rem);
+    animation: slideUp 300ms ease-out;
+  }
+
+  .fab {
+    @apply fixed w-14 h-14 rounded-full bg-primary shadow-fab flex items-center justify-center z-30 cursor-pointer;
+    bottom: calc(4.5rem + env(safe-area-inset-bottom));
+    right: 1rem;
+  }
+
+  .card-content-grid {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 300ms ease-out;
+  }
+
+  .card-content-grid.expanded {
+    grid-template-rows: 1fr;
+  }
+
+  .card-content-inner {
+    overflow: hidden;
+  }
+}
+
+@layer utilities {
+  .safe-bottom {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+}
+
+@keyframes slideUp {
+  from { transform: translateY(100%); }
+  to { transform: translateY(0); }
+}
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+.animate-pulse-dot {
+  animation: pulse-dot 2s ease-in-out infinite;
+}
