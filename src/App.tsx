@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { HashRouter, Routes, Route } from 'react-router-dom'
 import { AppShell } from './components/layout/AppShell'
 import { HomePage } from './pages/HomePage'
 import { FollowupsPage } from './pages/FollowupsPage'
@@ -7,7 +7,7 @@ import { ShareTargetPage } from './pages/ShareTargetPage'
 
 export default function App() {
   return (
-    <BrowserRouter>
+    <HashRouter>
       <Routes>
         <Route element={<AppShell />}>
           <Route path="/" element={<HomePage />} />
@@ -16,6 +16,6 @@ export default function App() {
         </Route>
         <Route path="/share-target" element={<ShareTargetPage />} />
       </Routes>
-    </BrowserRouter>
+    </HashRouter>
   )
 }
